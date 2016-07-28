@@ -59,4 +59,5 @@ ADD docker.tgz /docker
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+#mainly because https://github.com/docker/docker/issues/22749
 USER root
