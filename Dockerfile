@@ -8,7 +8,8 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 
-RUN apt-get update && apt-get install -y lxc curl ca-certificates openjdk-8-jdk && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
+RUN deb http://archive.raspberrypi.org/debian/ jessie main
+RUN apt-get update && apt-get install -y lxc curl ca-certificates oracle-java8-jdk && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
 # Jenkins is run with user `jenkins`, uid = 1000
 # If you bind mount a volume from the host or a data container, 
