@@ -8,7 +8,7 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 
-RUN deb http://archive.raspberrypi.org/debian/ jessie main
+COPY foundation.list /etc/apt/sources.list.d/
 RUN apt-get update && apt-get install -y lxc curl ca-certificates oracle-java8-jdk && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
 # Jenkins is run with user `jenkins`, uid = 1000
@@ -50,13 +50,15 @@ EXPOSE 50000
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-USER ${user}
-
 COPY jenkins.sh /usr/local/bin/jenkins.sh
+RUN chown ${user} /usr/local/bin/jenkins.sh && chmod u+x /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
 
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
+RUN chown ${user} /usr/local/bin/plugins.sh && chmod u+x /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+RUN chown ${user} /usr/local/bin/plugins.sh && chmod u+x /usr/local/bin/plugins.sh
 #mainly because https://github.com/docker/docker/issues/22749
-USER root
+USER ${user}
+
