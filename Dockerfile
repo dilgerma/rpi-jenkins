@@ -29,9 +29,9 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.11}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.15}
 ARG JENKINS_SHA
-ENV JENKINS_SHA ${JENKINS_SHA:-072fa308cd7ff7591cb273fde85bae4f40e48acf}
+ENV JENKINS_SHA ${JENKINS_SHA:-9d9c237c4a573f415679f36421de7c0b57fc2d3e}
 
 
 # could use ADD but this one does not check Last-Modified header 
@@ -54,8 +54,6 @@ USER ${user}
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
-
-ADD docker.tgz /docker
 
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
