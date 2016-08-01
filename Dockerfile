@@ -60,5 +60,5 @@ RUN chown ${user} /usr/local/bin/plugins.sh && chmod u+x /usr/local/bin/plugins.
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 RUN chown ${user} /usr/local/bin/plugins.sh && chmod u+x /usr/local/bin/plugins.sh
 #mainly because https://github.com/docker/docker/issues/22749
-USER ${user}
+USER root
 
