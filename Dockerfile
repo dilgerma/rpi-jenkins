@@ -29,7 +29,7 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.15}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.17}
 ARG JENKINS_SHA
 ENV JENKINS_SHA ${JENKINS_SHA:-9d9c237c4a573f415679f36421de7c0b57fc2d3e}
 
